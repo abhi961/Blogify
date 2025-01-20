@@ -4,6 +4,7 @@ import { IMAGES } from '../theme/images'
 import { normalize } from '../utlities/helpers/normalize'
 import { StatusBar } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import { COLORS } from '../theme/color';
 
 const Splash = () => {
     const navigation = useNavigation()
@@ -14,7 +15,7 @@ const Splash = () => {
    },[])
   return (
     <SafeAreaView style={styles.container}>
-    <StatusBar barStyle="light-content" backgroundColor="#ff3300" />
+    <StatusBar barStyle="default" backgroundColor={COLORS.orange} />
       <Image source={IMAGES.logoWhite}  style={styles.imgBox}/>
     </SafeAreaView>
   )
@@ -25,7 +26,7 @@ export default Splash
 const styles = StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor:'#ff3300',
+        backgroundColor:COLORS.orange,
         justifyContent:'center',
         alignItems:'center'
     },

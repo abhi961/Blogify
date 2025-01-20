@@ -1,31 +1,68 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import React, {useState, useRef} from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+  SafeAreaView,
+  Image,
+  TouchableOpacity,
+  Dimensions
+} from 'react-native';
+import {IMAGES} from '../theme/images';
+import {normalize} from '../utlities/helpers/normalize';
+import {COLORS} from '../theme/color';
+
+import SnapCarousel from '../Components/Snapcarousel';
+
 
 const Home = () => {
-    return (
-        <View style={styles.container}>
-            {/* <Text style={styles.title}>Welcome to Blogify</Text>
-            <Text style={styles.subtitle}>Your daily dose of blogs</Text> */}
-        </View>
-    );
+  
+  // const carouselRef = useRef(null);
+ 
+  return (
+    <SafeAreaView style={styles.container}>
+      <View style={styles.headerConatiner}>
+        <TouchableOpacity>
+          <Image source={IMAGES.profile} style={styles.profileImg} />
+        </TouchableOpacity>
+        <Image source={IMAGES.logo} style={styles.logoContainer} />
+        <TouchableOpacity>
+          <Image source={IMAGES.notification} style={styles.notify} />
+        </TouchableOpacity>
+      </View>
+      <SnapCarousel />
+    </SafeAreaView>
+  );
 };
 
 const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center',
-        backgroundColor: '#fff',
-    },
-    title: {
-        fontSize: 24,
-        fontWeight: 'bold',
-        marginBottom: 10,
-    },
-    subtitle: {
-        fontSize: 18,
-        color: '#666',
-    },
+  container: {
+    flex: 1,
+    backgroundColor: COLORS.lightWhite,
+    padding: normalize(15),
+  },
+  headerConatiner: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+  profileImg: {
+    width: normalize(30),
+    height: normalize(30),
+    resizeMode: 'contain',
+    borderRadius: normalize(60),
+  },
+  logoContainer: {
+    resizeMode: 'contain',
+    width: normalize(26),
+    height: normalize(26),
+    tintColor: COLORS.orange,
+  },
+  notify: {
+    resizeMode: 'contain',
+    width: normalize(26),
+    height: normalize(26),
+  },
 });
 
 export default Home;
