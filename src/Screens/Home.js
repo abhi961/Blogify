@@ -6,7 +6,8 @@ import {
   SafeAreaView,
   Image,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
+  FlatList
 } from 'react-native';
 import {IMAGES} from '../theme/images';
 import {normalize} from '../utlities/helpers/normalize';
@@ -30,7 +31,16 @@ const Home = () => {
           <Image source={IMAGES.notification} style={styles.notify} />
         </TouchableOpacity>
       </View>
-      <SnapCarousel />
+        <FlatList
+        horizontal
+          data={[1, 2, 3, 4, 5]}
+          keyExtractor={(item) => item.toString()}
+          renderItem={({item}) => (
+            <View>
+              <Text>{item}</Text>
+            </View>
+          )}
+         />
     </SafeAreaView>
   );
 };
