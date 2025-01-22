@@ -1,12 +1,16 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { StyleSheet, Text, View,LogBox } from 'react-native'
 import React from 'react'
 import Splash from './src/Screens/Splash'
 import StackNav from './src/Navigation/StackNav/Stack'
+import { DarkModeProvider } from './src/Components/DarkModeProvider'
 
 const App = () => {
+  LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
   return (
-
-     <StackNav />
+     <DarkModeProvider>
+      <StackNav />
+     </DarkModeProvider>
+     
 
   )
 }

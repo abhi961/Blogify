@@ -10,10 +10,12 @@ import {normalize} from '../../utlities/helpers/normalize';
 import {COLORS} from '../../theme/color';
 import {IMAGES} from '../../theme/images';
 import {Image} from 'react-native';
+import {useDarkMode} from '../../Components/DarkModeProvider';
 
 const Tab = createBottomTabNavigator();
 
 const TabNav = () => {
+  const isDarkMode = useDarkMode();
   return (
     <Tab.Navigator
       initialRouteName="Home"
@@ -26,7 +28,12 @@ const TabNav = () => {
           fontFamily: Fonts.Poppins_bold,
           letterSpacing: 0.2,
         },
-        tabBarStyle: {height: normalize(52)},
+        tabBarStyle: {
+          height: normalize(56),
+          backgroundColor: isDarkMode ? COLORS.cardDark : COLORS.white,
+          paddingBottom: 10,
+          // paddingTop: 14,
+        },
       }}>
       <Tab.Screen
         name="Home"

@@ -1,9 +1,12 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { useDarkMode } from '../Components/DarkModeProvider';
+import { COLORS } from '../theme/color';
 
 const Profile = () => {
+    const isDarkMode = useDarkMode();
     return (
-        <View style={styles.container}>
+        <View style={[styles.container, { backgroundColor: isDarkMode ? COLORS.black : COLORS.lightWhite }]}>
             <Text style={styles.text}>Profile Screen</Text>
         </View>
     );

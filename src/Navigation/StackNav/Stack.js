@@ -14,7 +14,7 @@ function StackNav() {
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Splash" screenOptions={{headerShown:false}}>
                 <Stack.Screen name="Splash" component={Splash} />
-                <Stack.Screen name="Home" component={Home} />
+                {/* <Stack.Screen name="Home" component={Home} /> */}
                 <Stack.Screen name="TabNav" component={TabNav} />
                
             </Stack.Navigator>

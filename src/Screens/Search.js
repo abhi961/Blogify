@@ -6,9 +6,13 @@ import {
   Text,
   StyleSheet,
   KeyboardAvoidingView,
+  SafeAreaView,
 } from 'react-native';
+import {useDarkMode} from '../Components/DarkModeProvider';
+import {COLORS} from '../theme/color';
 
 const Search = () => {
+  const isDarkMode = useDarkMode();
   const [query, setQuery] = useState('');
   const [results, setResults] = useState([]);
 
@@ -19,26 +23,32 @@ const Search = () => {
   };
 
   return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
-      <View style={styles.container}>
-        <TextInput
-          style={styles.searchInput}
-          placeholder="Search..."
-          value={query}
-          onChangeText={handleSearch}
-        />
-        <FlatList
-          data={results}
-          keyExtractor={item => item.id.toString()}
-          renderItem={({item}) => (
-            <View style={styles.resultItem}>
-              <Text>{item.title}</Text>
-            </View>
-          )}
-        />
-      </View>
-    </KeyboardAvoidingView>
+    <SafeAreaView
+      style={[
+        styles.container,
+        {backgroundColor: isDarkMode ? COLORS.black : COLORS.white},
+      ]}>
+      <KeyboardAvoidingView
+        behavior={Platform.OS === 'ios' ? 'padding' : 'height'}>
+        <View style={styles.container}>
+          <TextInput
+            style={styles.searchInput}
+            placeholder="Search..."
+            value={query}
+            onChangeText={handleSearch}
+          />
+          <FlatList
+            data={results}
+            keyExtractor={item => item.id.toString()}
+            renderItem={({item}) => (
+              <View style={styles.resultItem}>
+                <Text>{item.title}</Text>
+              </View>
+            )}
+          />
+        </View>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   );
 };
 
