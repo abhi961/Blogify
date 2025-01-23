@@ -26,4 +26,11 @@ export const CatIcon={
      Technology:require('../assets/images/tech.png'),
      Entertainment:require('../assets/images/entertain.png'),
      Business:require('../assets/images/growth.png'),
+     Likes:require('../assets/images/like.png'),
+     fillLike:require('../assets/images/like1.png'),
+     comment:require('../assets/images/comment.png'),
+     Back:require('../assets/images/back.png'),
+     Save:require('../assets/images/bookmark.png'),
+     DisLike:require('../assets/images/dislike.png'),
+     fillDisLike:require('../assets/images/dislike1.png'),
 }

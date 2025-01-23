@@ -9,4 +9,5 @@ export const COLORS = {
     ExtraWhite:'#f2f2f2',
     darmodeBlack:'#262626',
     cardDark:'#1a1a1a',
+    divider:'#e6e6e6'
 }

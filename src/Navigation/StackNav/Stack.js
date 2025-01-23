@@ -5,6 +5,7 @@ import Home from '../../Screens/Home';
 import Splash from '../../Screens/Splash';
 import TabNav from '../BottomTab/TabNav';
 import Favourite from '../../Screens/Favourite';
+import ArticleDetails from '../../Screens/ArticleDetails';
 
 
 const Stack = createNativeStackNavigator()
@@ -14,7 +15,7 @@ function StackNav() {
         <NavigationContainer>
             <Stack.Navigator initialRouteName="Splash" screenOptions={{headerShown:false}}>
                 <Stack.Screen name="Splash" component={Splash} />
-                {/* <Stack.Screen name="Home" component={Home} /> */}
+                <Stack.Screen name="Details" component={ArticleDetails} />
                 <Stack.Screen name="TabNav" component={TabNav} />
                
             </Stack.Navigator>

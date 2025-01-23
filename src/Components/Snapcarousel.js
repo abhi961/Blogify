@@ -4,22 +4,42 @@ import {COLORS} from '../theme/color';
 import {normalize} from '../utlities/helpers/normalize';
 import {Fonts} from '../theme/fonts';
 import {useDarkMode} from './DarkModeProvider';
+import { useNavigation } from '@react-navigation/native';
 
 const Snapcarousel = ({item}) => {
+  const navigation = useNavigation()
   const isDarkMode = useDarkMode();
   return (
-    <View style={[styles.container,{backgroundColor:isDarkMode?COLORS.cardDark:COLORS.white}]}>
+    <TouchableOpacity
+    activeOpacity={0.6}
+    onPress={()=> navigation.navigate('Details',{data:item})}
+      style={[
+        styles.container,
+        {backgroundColor: isDarkMode ? COLORS.cardDark : COLORS.white},
+      ]}>
       <Image source={{uri: item.illustration}} style={styles.articleImg} />
       <View style={styles.category}>
         <Text style={styles.categoryText}>{item.category}</Text>
       </View>
       <View style={styles.contentContainer}>
         <TouchableOpacity style={styles.titleConatiner}>
-          <Text style={[styles.titleText,{color:isDarkMode? COLORS.white:COLORS.lightBack}]}>{item.title}</Text>
+          <Text
+            style={[
+              styles.titleText,
+              {color: isDarkMode ? COLORS.white : COLORS.lightBack},
+            ]}>
+            {item.title}
+          </Text>
         </TouchableOpacity>
-        <Text style={[styles.timeText,{color:isDarkMode ? COLORS.white:COLORS.lightBack}]}>{item.time}</Text>
+        <Text
+          style={[
+            styles.timeText,
+            {color: isDarkMode ? COLORS.white : COLORS.lightBack},
+          ]}>
+          {item.time}
+        </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -30,11 +50,11 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
     // borderColor:COLORS.ExtraWhite,
     // borderWidth:normalize(1),
-      borderRadius:normalize(10),
+    borderRadius: normalize(10),
     // padding: normalize(15),
     width: normalize(280),
     margin: normalize(10),
-    height:normalize(300)
+    height: normalize(300),
   },
   articleImg: {
     width: '100%',
@@ -78,9 +98,9 @@ const styles = StyleSheet.create({
     fontSize: normalize(14),
     letterSpacing: normalize(0.5),
   },
-  timeText:{
-    fontFamily:Fonts.Poppins_Regular,
-   fontSize:normalize(12),
-   color:COLORS.lightBack,
-  }
+  timeText: {
+    fontFamily: Fonts.Poppins_Regular,
+    fontSize: normalize(12),
+    color: COLORS.lightBack,
+  },
 });

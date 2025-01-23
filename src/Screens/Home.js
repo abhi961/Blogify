@@ -1,4 +1,4 @@
-import React, {useState, useRef} from 'react';
+import React, { useState, useRef } from 'react';
 import {
   View,
   Text,
@@ -8,13 +8,15 @@ import {
   TouchableOpacity,
   Dimensions,
   FlatList,
+  ScrollView,
 } from 'react-native';
-import {IMAGES} from '../theme/images';
-import {normalize} from '../utlities/helpers/normalize';
-import {COLORS} from '../theme/color';
-import {useDarkMode} from '../Components/DarkModeProvider';
+import { IMAGES } from '../theme/images';
+import { normalize } from '../utlities/helpers/normalize';
+import { COLORS } from '../theme/color';
+import { useDarkMode } from '../Components/DarkModeProvider';
 import SnapCarousel from '../Components/Snapcarousel';
-import {Fonts} from '../theme/fonts';
+import { Fonts } from '../theme/fonts';
+import ArticlesList from '../Components/ArticlesList';
 
 const Home = () => {
   const isDarkMode = useDarkMode();
@@ -25,6 +27,7 @@ const Home = () => {
       illustration: 'https://i.imgur.com/UYiroysl.jpg',
       category: 'science',
       time: '2h ago',
+      date: '10 January'
     },
     {
       title: 'Earlier this morning, NYC',
@@ -32,6 +35,7 @@ const Home = () => {
       illustration: 'https://i.imgur.com/UPrs1EWl.jpg',
       category: 'Health',
       time: '2h ago',
+      date: '12 January'
     },
     {
       title: 'White Pocket Sunset',
@@ -39,6 +43,7 @@ const Home = () => {
       illustration: 'https://i.imgur.com/MABUbpDl.jpg',
       category: 'LifeStyle',
       time: '2h ago',
+      date: '15 January'
     },
     {
       title: 'Acrocorinth, Greece',
@@ -46,13 +51,15 @@ const Home = () => {
       illustration: 'https://i.imgur.com/KZsmUi2l.jpg',
       category: 'Technology',
       time: '2h ago',
+      date: '18 january'
     },
     {
-      title: 'The lone tree, majestic landscape of New Zealand dvsdvsdv',
+      title: 'The lone tree, majestic landscape of New Zealand',
       subtitle: 'Lorem ipsum dolor sit amet',
       illustration: 'https://i.imgur.com/MABUbpDl.jpg',
       category: 'Entertainment',
       time: '2h ago',
+      date: '20 january'
     },
   ]);
 
@@ -62,8 +69,9 @@ const Home = () => {
     <SafeAreaView
       style={[
         styles.container,
-        {backgroundColor: isDarkMode ? COLORS.black : COLORS.lightWhite},
+        { backgroundColor: isDarkMode ? COLORS.black : COLORS.lightWhite },
       ]}>
+
       <View style={styles.headerConatiner}>
         <TouchableOpacity>
           <Image source={IMAGES.profile} style={styles.profileImg} />
@@ -72,7 +80,7 @@ const Home = () => {
           source={IMAGES.logo}
           style={[
             styles.logoContainer,
-            {tintColor: isDarkMode ? COLORS.white : COLORS.orange},
+            { tintColor: isDarkMode ? COLORS.white : COLORS.orange },
           ]}
         />
         <TouchableOpacity>
@@ -80,49 +88,63 @@ const Home = () => {
             source={IMAGES.notification}
             style={[
               styles.notify,
-              {tintColor: isDarkMode ? COLORS.white : COLORS.lightBack},
+              { tintColor: isDarkMode ? COLORS.white : COLORS.lightBack },
             ]}
           />
         </TouchableOpacity>
       </View>
-      <View
-        style={[
-          styles.innerColor,
-          {
-            backgroundColor: isDarkMode
-              ? COLORS.darmodeBlack
-              : COLORS.lightOrange,
-          },
-        ]}>
-        <FlatList
-          contentContainerStyle={{paddingHorizontal: normalize(10)}}
-          showsHorizontalScrollIndicator={false}
-          horizontal
-          data={entities}
-          keyExtractor={item => item.toString()}
-          renderItem={({item, index}) => (
-            <SnapCarousel item={item} index={index} />
-          )}
-        />
-      </View>
-      <Text style={styles.lablesText}>Labels</Text>
-      <View style={styles.underLine} />
-      <View style={styles.LabelsConatiner}>
-        <TouchableOpacity>
-          <Text style={styles.CatText}>Science</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={styles.CatText}>Health</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={styles.CatText}>LifeStyle</Text>
-        </TouchableOpacity>
-        <TouchableOpacity>
-          <Text style={styles.CatText}>LifeStyle</Text>
-        </TouchableOpacity>
-        {/* <Text style={styles.lablesText}>Entertainment</Text>
-        <Text style={styles.lablesText}>Business</Text> */}
-      </View>
+      <ScrollView showsVerticalScrollIndicator={false}>
+        <View
+          style={[
+            styles.innerColor,
+            {
+              backgroundColor: isDarkMode
+                ? COLORS.darmodeBlack
+                : COLORS.lightOrange,
+            },
+          ]}>
+          <FlatList
+            contentContainerStyle={{ paddingHorizontal: normalize(10) }}
+            showsHorizontalScrollIndicator={false}
+            horizontal
+            data={entities}
+            keyExtractor={item => item.toString()}
+            renderItem={({ item, index }) => (
+              <SnapCarousel item={item} index={index} />
+            )}
+          />
+        </View>
+        <Text style={styles.lablesText}>Labels</Text>
+        <View style={styles.underLine} />
+        <View style={styles.LabelsConatiner}>
+          <TouchableOpacity>
+            <Text style={styles.CatText}>Science</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={styles.CatText}>Health</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={styles.CatText}>LifeStyle</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={styles.CatText}>LifeStyle</Text>
+          </TouchableOpacity>
+        </View>
+        <View style={styles.LabelsConatiner1}>
+          <TouchableOpacity>
+            <Text style={styles.CatText}>Entertainment</Text>
+          </TouchableOpacity>
+          <TouchableOpacity>
+            <Text style={[styles.CatText, { marginLeft: normalize(10) }]}>
+              Business
+            </Text>
+          </TouchableOpacity>
+        </View>
+        <View style={[styles.Divider, { backgroundColor: isDarkMode ? COLORS.lightBack : COLORS.divider }]} />
+        <Text style={styles.articlesText}>More Articles</Text>
+        <ArticlesList item={entities} />
+      </ScrollView>
+
     </SafeAreaView>
   );
 };
@@ -139,6 +161,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
+ paddingBottom: normalize(20),
   },
   profileImg: {
     width: normalize(30),
@@ -154,8 +177,8 @@ const styles = StyleSheet.create({
   },
   notify: {
     resizeMode: 'contain',
-    width: normalize(26),
-    height: normalize(26),
+    width: normalize(22),
+    height: normalize(22),
   },
   innerColor: {
     backgroundColor: COLORS.lightOrange,
@@ -188,11 +211,31 @@ const styles = StyleSheet.create({
     color: COLORS.orange,
     letterSpacing: normalize(0.5),
     borderWidth: normalize(1),
+
     borderColor: COLORS.orange,
     paddingHorizontal: normalize(15),
     paddingTop: normalize(5),
     paddingVertical: normalize(5),
     borderRadius: normalize(6),
+  },
+  LabelsConatiner1: {
+    flexDirection: 'row',
+    // justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: normalize(10),
+  },
+  Divider: {
+    height: normalize(1),
+    width: '100%',
+    backgroundColor: COLORS.divider,
+    marginTop: normalize(25),
+  },
+  articlesText: {
+    fontSize: normalize(16),
+    fontFamily: Fonts.Poppins_bold,
+    marginTop: normalize(10),
+    letterSpacing: normalize(0.5),
+    color: COLORS.orange,
   },
 });
 
