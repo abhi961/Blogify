@@ -5,15 +5,16 @@ import {normalize} from '../utlities/helpers/normalize';
 import {useNavigation} from '@react-navigation/native';
 import {useDarkMode} from './DarkModeProvider';
 import {COLORS} from '../theme/color';
+import { Fonts } from '../theme/fonts';
 
-const Header = () => {
+const Header = ({mainTitle,saveIcon}) => {
   const isDarkMode = useDarkMode();
   const navigation = useNavigation();
   return (
     <View
       style={[
         styles.header,
-        {backgroundColor: isDarkMode ? COLORS.black : COLORS.lightWhite},
+        {backgroundColor: isDarkMode ? COLORS.black : COLORS.white},
       ]}>
       <TouchableOpacity onPress={() => navigation.goBack()}>
         <Image
@@ -24,9 +25,10 @@ const Header = () => {
           ]}
         />
       </TouchableOpacity>
+      <Text style={[styles.title, {color: isDarkMode ? COLORS.white : COLORS.black}]}>{mainTitle}</Text>
       <TouchableOpacity>
         <Image
-          source={CatIcon.Save}
+          source={saveIcon === true ? CatIcon.Save : null}
           style={[
             styles.backIcon,
             {tintColor: isDarkMode ? COLORS.white : COLORS.black},
@@ -45,12 +47,17 @@ const styles = StyleSheet.create({
     paddingBottom: normalize(20),
     paddingHorizontal: normalize(15),
     backgroundColor:'#000',
-    paddingTop: normalize(20),
+    paddingTop: normalize(15),
   },
   backIcon: {
     resizeMode: 'contain',
     width: normalize(16),
     height: normalize(16),
+  },
+  title: {
+    fontSize: normalize(16),
+    fontFamily: Fonts.Poppins_SemiBold,
+  
   },
 });
 

@@ -14,7 +14,7 @@ const ArticleCards = ({ item }) => {
     <TouchableOpacity
       activeOpacity={0.6}
       onPress={() => navigation.navigate('Details', { data: item })}
-      style={styles.cardsContainer}>
+      style={[styles.cardsContainer,{ borderColor: isDarkMode ? COLORS.lightBack : COLORS.divider }]}>
       <Image source={{ uri: item.illustration }} style={styles.articlImg} />
       <View style={styles.conentCards}>
         <Text

@@ -17,6 +17,7 @@ import { useDarkMode } from '../Components/DarkModeProvider';
 import SnapCarousel from '../Components/Snapcarousel';
 import { Fonts } from '../theme/fonts';
 import ArticlesList from '../Components/ArticlesList';
+import Data from '../theme/Data';
 
 const Home = () => {
   const isDarkMode = useDarkMode();
@@ -69,7 +70,7 @@ const Home = () => {
     <SafeAreaView
       style={[
         styles.container,
-        { backgroundColor: isDarkMode ? COLORS.black : COLORS.lightWhite },
+        { backgroundColor: isDarkMode ? COLORS.black : COLORS.white },
       ]}>
 
       <View style={styles.headerConatiner}>
@@ -107,8 +108,8 @@ const Home = () => {
             contentContainerStyle={{ paddingHorizontal: normalize(10) }}
             showsHorizontalScrollIndicator={false}
             horizontal
-            data={entities}
-            keyExtractor={item => item.toString()}
+            data={Data}
+            keyExtractor={(item, index) => `${item.title}-${index}`}
             renderItem={({ item, index }) => (
               <SnapCarousel item={item} index={index} />
             )}

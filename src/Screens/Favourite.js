@@ -1,31 +1,38 @@
 import React from 'react';
-import {View, Text, StyleSheet} from 'react-native';
-import {useDarkMode} from '../Components/DarkModeProvider';
-import {COLORS} from '../theme/color';
+import { View, StyleSheet, SafeAreaView } from 'react-native';
+import { useDarkMode } from '../Components/DarkModeProvider';
+import { COLORS } from '../theme/color';
+import Header from '../Components/Header';
+import FavouriteList from '../Components/FavouriteList';
+import Data from '../theme/Data';
+import { FlatList } from 'react-native';
+import { normalize } from '../utlities/helpers/normalize';
 
 const Favourite = () => {
   const isDarkMode = useDarkMode();
+
   return (
-    <View
+    <SafeAreaView
       style={[
         styles.container,
-        {backgroundColor: isDarkMode ? COLORS.black : COLORS.white},
+        { backgroundColor: isDarkMode ? COLORS.black : COLORS.white },
       ]}>
-      <Text style={styles.text}>Favourite Screen</Text>
-    </View>
+      <Header mainTitle={'Favourite'} />
+      <FlatList
+        data={Data}
+        showsVerticalScrollIndicator={false}
+        keyExtractor={(item, index) => `${item.title}-${index}`}
+        renderItem={({ item, index }) => <FavouriteList item={item} index={index} />}
+      />
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#fff',
-  },
-  text: {
-    fontSize: 20,
-    fontWeight: 'bold',
+    // backgroundColor: COLORS.white,
+  
   },
 });
 
